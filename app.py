@@ -1,25 +1,23 @@
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.naive_bayes import MultinomialNB
-import streamlit as st
 import pickle
-
+import streamlit as st
 
 st.title("Spam Detector using Naïve Bayes")
 st.write("Enter a message below to check if it's spam or not.")
 
-# Load the trained model (Make sure to provide the correct path to the model)
-loaded_model = pickle.load(open("spam_classifier_model.pkl", "rb"))
-
+# Load both the trained vectorizer and model
+with open(r"G:\My Projects\Predictive\spam-detector\spam_classifier_model.pkl", "rb") as f:
+    vectorizer, loaded_model = pickle.load(f)  # Unpack the tuple correctly
 
 # User input
 message = st.text_area("Enter your message:")
-vectorizer = TfidfVectorizer()
+
 if st.button("Check"):
     if message.strip():
-        # Make prediction
-        
+        # Transform the message using the loaded vectorizer
         message_transformed = vectorizer.transform([message])
-        prediction = loaded_model.predict([message_transformed ])[0]
+        
+        # Make prediction
+        prediction = loaded_model.predict(message_transformed)[0]
 
         # Display result
         if prediction == 1:
