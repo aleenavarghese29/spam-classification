@@ -6,7 +6,8 @@ st.title("Spam Detector using Naïve Bayes")
 st.write("Enter a message below to check if it's spam or not.")
 
 # Load the trained model (Make sure to provide the correct path to the model)
-loaded_model = pickle.load(open(r"G:\My Projects\Predictive\spam-detector\spam_classifier_model.pkl", "rb"))
+loaded_model = pickle.load(open("spam_classifier_model.pkl", "rb"))
+
 
 # User input
 message = st.text_area("Enter your message:")
