@@ -5,7 +5,7 @@ st.title("Spam Detector using Naïve Bayes")
 st.write("Enter a message below to check if it's spam or not.")
 
 # Load both the trained vectorizer and model
-with open(r"G:\My Projects\Predictive\spam-detector\spam_classifier_model.pkl", "rb") as f:
+with open("spam_classifier_model.pkl", "rb") as f:
     vectorizer, loaded_model = pickle.load(f)  # Unpack the tuple correctly
 
 # User input
